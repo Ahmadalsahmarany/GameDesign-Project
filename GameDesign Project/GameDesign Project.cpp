@@ -1,20 +1,44 @@
-// GameDesign Project.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <string>
+using namespace std;
 
-int main()
-{
-    std::cout << "Hello World!\n";
-}
+class Karakter { // ana karakterin sinifi
+protected:
+    string isim;
+    int can;
+    int saldiriGucu;
+    int savunmaGucu;
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+public:
+    Karakter(string karakterIsim, int hp, int atk, int def) {
+        isim = karakterIsim;
+        can = hp;
+        saldiriGucu = atk;
+        savunmaGucu = def;
+    }
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+    virtual void saldir(Karakter& target) { //saldiri metodu
+        cout << isim << " " << target.isim << "'e saldiriyor"<< endl;
+        target.hasarAl(saldiriGucu);
+    }
+
+    void hasarAl(int hasar) { // alinan hasarin metodu
+
+        int gercekHasar = hasar - savunmaGucu;
+        can -= gercekHasar;
+        cout << isim << " " << gercekHasar << " hasar aldi"<< endl;
+       
+    }
+
+    bool hayattaMi() {
+        return can > 0;
+    }
+
+    string getIsim() {
+        return isim;
+    }
+
+    int getCan() {
+        return can;
+    }
+};
