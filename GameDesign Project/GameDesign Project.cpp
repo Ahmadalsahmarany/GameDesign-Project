@@ -122,3 +122,31 @@ public:
         hedef.hasarAl(saldiriGucu);
     }
 };
+int main() {
+
+    int zorluk;
+    cout << "Zorluk secin (1 = Kolay, 2 = Orta, 3 = Zor): ";
+    cin >> zorluk;
+
+    int oyuncuCan;
+    if (zorluk == 1) {
+        oyuncuCan = 120;
+    }
+    else if (zorluk == 2) {
+        oyuncuCan = 100;
+    }
+    else {
+        oyuncuCan = 80;
+    }
+
+    Oyuncu oyuncu("Kahraman Ahmad", oyuncuCan, 15, 5, 3);
+
+    // Düşman Tipleri
+    Karakter* dusmanlar[3];
+    dusmanlar[0] = new Goblin();
+    dusmanlar[1] = new Ejder();
+    dusmanlar[2] = new Titan();
+
+    cout << "Savas Basliyor " << endl;
+
+
