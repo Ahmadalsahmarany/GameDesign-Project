@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <string>
 using namespace std;
 
@@ -42,3 +42,26 @@ public:
         return can;
     }
 };
+
+class Oyuncu : public Karakter { // oyuncu icin bir sinif
+private:
+    int iksirSayisi;
+
+public:
+    Oyuncu(string oyuncuIsim, int hp, int atk, int def, int iksirAdet)
+        : Karakter(oyuncuIsim, hp, atk, def) {
+        iksirSayisi = iksirAdet;
+    }
+
+    void iksirKullan() {
+        if (iksirSayisi > 0) {
+            can += 30;
+            iksirSayisi--;
+            cout << isim << " bir iksir kullandı ve canı yenilendi!\n";
+        }
+        else {
+            cout << isim << "'in iksiri kalmadı!\n";
+        }
+    }
+};
+
