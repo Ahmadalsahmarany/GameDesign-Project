@@ -10,6 +10,13 @@ protected:
     int savunmaGucu;
 
 public:
+    Karakter() {
+        isim = "";
+        can = 0;
+        saldiriGucu = 0;
+        savunmaGucu = 0;
+    }
+
     Karakter(string karakterIsim, int hp, int atk, int def) {
         isim = karakterIsim;
         can = hp;
@@ -48,8 +55,11 @@ private:
     int iksirSayisi;
 
 public:
-    Oyuncu(string oyuncuIsim, int hp, int atk, int def, int iksirAdet)
-        : Karakter(oyuncuIsim, hp, atk, def) {
+    Oyuncu(string oyuncuIsim, int hp, int atk, int def, int iksirAdet) {
+        isim = oyuncuIsim;
+        can = hp;
+        saldiriGucu = atk;
+        savunmaGucu = def;
         iksirSayisi = iksirAdet;
     }
 
@@ -57,10 +67,10 @@ public:
         if (iksirSayisi > 0) {
             can += 30;
             iksirSayisi--;
-            cout << isim << " bir iksir kullandı ve canı yenilendi!\n";
+            cout << isim << " 30lik bir eksir kullanildi " << endl;
         }
         else {
-            cout << isim << "'in iksiri kalmadı!\n";
+            cout << isim << "'in iksiri kalmadi"<< endl;
         }
     }
 };
