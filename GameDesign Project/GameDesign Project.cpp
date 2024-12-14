@@ -75,3 +75,50 @@ public:
     }
 };
 
+class Goblin : public Karakter {
+public:
+    Goblin() {
+        isim = "Goblin";
+        can = 30;
+        saldiriGucu = 10;
+        savunmaGucu = 2;
+        cout << "Bir Goblin ortaya cikti"<<endl;
+    }
+
+    void saldir(Karakter& hedef) override {
+        cout << isim << " " << hedef.getIsim() << "'e saldiriyor" << endl;
+        hedef.hasarAl(saldiriGucu);
+    }
+};
+
+class Ejder : public Karakter {
+public:
+    Ejder() {
+        isim = "Ejder";
+        can = 60;
+        saldiriGucu = 15;
+        savunmaGucu = 5;
+        cout << "Bir Ejder ortaya cikti" << endl;
+    }
+
+    void saldir(Karakter& hedef) override {
+        cout << isim << " " << hedef.getIsim() << "'e saldiriyor" << endl;
+        hedef.hasarAl(saldiriGucu);
+    }
+};
+
+class Titan : public Karakter {
+public:
+    Titan() {
+        isim = "Titan";
+        can = 80;
+        saldiriGucu = 20;
+        savunmaGucu = 10;
+        cout << "bir Titan ortaya cikti" << endl;
+    }
+
+    void saldir(Karakter& hedef) override {
+        cout << isim << " " << hedef.getIsim() << "'e saldiriyor" << endl;
+        hedef.hasarAl(saldiriGucu);
+    }
+};
