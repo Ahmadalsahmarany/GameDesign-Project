@@ -139,7 +139,7 @@ int main() {
         oyuncuCan = 80;
     }
 
-    Oyuncu oyuncu("Kahraman Ahmad", oyuncuCan, 15, 5, 3);
+    Oyuncu oyuncu("Kahraman Ahmet", oyuncuCan, 15, 5, 3);
 
     // Düşman Tipleri
     Karakter* dusmanlar[3];
@@ -148,5 +148,58 @@ int main() {
     dusmanlar[2] = new Titan();
 
     cout << "Savas Basliyor " << endl;
+
+    int mevcutDusman = 0;
+
+    while (oyuncu.hayattaMi() && mevcutDusman < 3) {
+        cout << endl << "Oyuncu Can: " << oyuncu.getCan() << endl;
+        cout << dusmanlar[mevcutDusman]->getIsim() << " Can: " << dusmanlar[mevcutDusman]->getCan() << endl;
+
+        // Oyuncunun Sırası
+        cout << "Islev sec 1) Saldir 2) İksir Kullan: ";
+        int secim;
+        cin >> secim;
+
+        if (secim == 1) {
+            oyuncu.saldir(*dusmanlar[mevcutDusman]);
+        }
+        else if (secim == 2) {
+            oyuncu.iksirKullan();
+        }
+        else {
+            cout << "Gecersiz. Tekrar deneyin" << endl;
+            continue;
+        }
+
+        if (!dusmanlar[mevcutDusman]->hayattaMi()) {
+            cout << dusmanlar[mevcutDusman]->getIsim() << " yenildi!\n";
+            mevcutDusman++;
+
+            if (mevcutDusman < 3) {
+                cout << "Yeni bir car savasa katildi" << endl;
+            }
+
+            continue;
+        }
+
+        dusmanlar[mevcutDusman]->saldir(oyuncu);
+
+        if (!oyuncu.hayattaMi()) {
+            cout << "Maalesef kaybettiniz. " << endl;
+            break;
+        }
+    }
+
+    if (oyuncu.hayattaMi()) {
+        cout << "Tebrikler, Kazandiniz" << endl;
+    }
+
+    for (int i = 0; i < 3; i++) {
+        delete dusmanlar[i];
+    }
+
+    return 0;
+}
+
 
 
