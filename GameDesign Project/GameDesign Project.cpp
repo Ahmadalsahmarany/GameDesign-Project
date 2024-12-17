@@ -50,6 +50,24 @@ public:
     }
 };
 
+void gosterCanBar(string isim, int mevcutCan, int maksimumCan) {
+    int barUzunlugu = 20; // Sağlık barının genişliği
+    int doluUzunluk = (mevcutCan * barUzunlugu) / maksimumCan;
+
+    cout << isim << " [";
+    for (int i = 0; i < doluUzunluk; i++) cout << "#"; // Dolu kısmı
+    for (int i = doluUzunluk; i < barUzunlugu; i++) cout << " "; // Boş kısmı
+    cout << "] " << mevcutCan << "/" << maksimumCan << endl;
+}
+
+void baslangicEkrani() {
+    cout << "==============================" << endl;
+    cout << "   SIRA TABANLI SAVAS OYUNU   " << endl;
+    cout << "==============================" << endl;
+    cout << "Zorluk seviyesini secin (1 = Kolay, 2 = Orta, 3 = Zor): ";
+}
+
+
 class Oyuncu : public Karakter { // oyuncu icin bir sinif
 private:
     int iksirSayisi;
@@ -123,10 +141,11 @@ public:
     }
 };
 int main() {
+    baslangicEkrani(); // Başlangıç ekranı göster
 
     int zorluk;
-    cout << "Zorluk secin (1 = Kolay, 2 = Orta, 3 = Zor): ";
     cin >> zorluk;
+    cout << endl;
 
     int oyuncuCan;
     if (zorluk == 1) {
@@ -144,21 +163,29 @@ int main() {
     // Düşman Tipleri
     Karakter* dusmanlar[3];
     dusmanlar[0] = new Goblin();
+    cout << endl;
     dusmanlar[1] = new Ejder();
+    cout << endl;
     dusmanlar[2] = new Titan();
+    cout << endl;
+
+
 
     cout << "Savas Basliyor " << endl;
 
     int mevcutDusman = 0;
 
     while (oyuncu.hayattaMi() && mevcutDusman < 3) {
-        cout << endl << "Oyuncu Can: " << oyuncu.getCan() << endl;
-        cout << dusmanlar[mevcutDusman]->getIsim() << " Can: " << dusmanlar[mevcutDusman]->getCan() << endl;
+        cout << endl;
+        gosterCanBar(oyuncu.getIsim(), oyuncu.getCan(), oyuncuCan);
+        gosterCanBar(dusmanlar[mevcutDusman]->getIsim(), dusmanlar[mevcutDusman]->getCan(),100);
+        cout << endl;
 
         // Oyuncunun Sırası
-        cout << "Islev sec 1) Saldir 2) İksir Kullan: ";
+        cout << "Islev sec 1) Saldir 2) Iksir Kullan: ";
         int secim;
         cin >> secim;
+        cout << endl;
 
         if (secim == 1) {
             oyuncu.saldir(*dusmanlar[mevcutDusman]);
@@ -190,16 +217,10 @@ int main() {
         }
     }
 
-    if (oyuncu.hayattaMi()) {
-        cout << "Tebrikler, Kazandiniz" << endl;
-    }
-
     for (int i = 0; i < 3; i++) {
         delete dusmanlar[i];
     }
 
     return 0;
 }
-
-
 
